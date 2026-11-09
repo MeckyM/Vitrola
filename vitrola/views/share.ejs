@@ -1,0 +1,42 @@
+<%- include('partials/head', {
+  titulo: 'Rank da Vitrine',
+  og: {
+    title: 'Quem mais ouviu música na nossa galera?',
+    description: 'Veja o rank de tempo de escuta na Vitrine.',
+    url: url,
+    image: image
+  }
+}) %>
+<main class="entrada container">
+  <%- include('partials/logo') %>
+  <h1 class="entrada__titulo entrada__titulo--medio">Quem mais ouviu música?</h1>
+  <% const temDados = members.some((m) => m.totalMs > 0); %>
+  <% if (!temDados) { %>
+    <p class="entrada__texto">O rank começa a contar quando a galera entra na Vitrine.</p>
+  <% } else { %>
+    <ol class="rank__lista rank__lista--publica">
+      <% members.forEach((m, i) => { %>
+        <li class="rank__item<%= i === 0 ? ' rank__item--primeiro' : '' %>">
+          <span class="rank__pos"><%= i + 1 %></span>
+          <% if (m.image) { %>
+            <img class="avatar" src="<%= m.image %>" alt="" width="48" height="48">
+          <% } else { %>
+            <span class="avatar avatar--vazio" aria-hidden="true"><%= m.name.charAt(0).toUpperCase() %></span>
+          <% } %>
+          <div class="rank__meio">
+            <div class="rank__linha">
+              <strong class="rank__nome"><%= m.name %></strong>
+              <span class="rank__total"><%= fmt(m.totalMs) %></span>
+            </div>
+            <% if (m.topTrack) { %>
+              <p class="rank__detalhe">Mais ouvida: <%= m.topTrack.name %> (<%= m.topTrack.count %>×)</p>
+            <% } %>
+          </div>
+        </li>
+      <% }) %>
+    </ol>
+  <% } %>
+  <a class="btn" href="/">Entrar na Vitrine</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+.paineis {
+  display: grid;
+  gap: 1.75rem;
+  padding-bottom: 4rem;
+}
+
+.painel {
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid $linha;
+  border-radius: $raio;
+  background: $painel;
+
+  &__cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__titulo {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+
+    .painel__cabeca & {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.acoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid $linha;
+
+  @include ate(52rem) {
+    grid-template-columns: 1fr;
+  }
+
+  &__texto {
+    margin-bottom: 1rem;
+    color: $suave;
+    font-size: 0.95rem;
+  }
+
+  &__linha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+}

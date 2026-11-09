@@ -1,0 +1,246 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: $preto;
+  color: $texto;
+  font-family: $fonte-texto;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: $fonte-titulo;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid $verde-claro;
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(100% - 2.5rem, $largura);
+  margin-inline: auto;
+}
+
+.subtitulo {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.logo {
+  flex: none;
+  color: $verde;
+}
+
+// Topo: logo pequeno à esquerda, nome à direita, como no esboço
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid $linha;
+  margin-bottom: 2rem;
+
+  &__direita {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.marca {
+  font-family: $fonte-titulo;
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+// Botões
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.55rem 1.2rem;
+  border: 2px solid $verde;
+  border-radius: 999px;
+  background: $verde;
+  color: #04130a;
+  font: 700 0.95rem $fonte-texto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: $verde-claro;
+    border-color: $verde-claro;
+  }
+
+  &--contorno {
+    background: transparent;
+    border-color: $linha;
+    color: $texto;
+
+    &:hover {
+      background: $verde;
+      border-color: $verde;
+      color: #04130a;
+    }
+  }
+
+  &--mini {
+    min-height: 2.25rem;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+.campo {
+  flex: 1 1 14rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid $linha;
+  border-radius: 999px;
+  background: $preto;
+  color: $texto;
+  font: 0.9rem $fonte-texto;
+}
+
+// Avatar
+.avatar {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: $painel-2;
+
+  &--grande {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  &--vazio {
+    display: grid;
+    place-items: center;
+    font: 700 1.2rem $fonte-titulo;
+    color: $suave;
+  }
+}
+
+// Tempo: número grande e unidade pequena ao lado ("0 min", "12 h 05 min")
+.tempo {
+  font-family: $fonte-titulo;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+
+  b {
+    font-weight: 800;
+  }
+
+  i {
+    margin: 0 0.4em 0 0.15em;
+    font-size: 0.45em;
+    font-style: normal;
+    font-weight: 600;
+    color: $suave;
+  }
+
+  i:last-child {
+    margin-right: 0;
+  }
+
+  &--grande {
+    font-size: clamp(3rem, 11vw, 5.5rem);
+    line-height: 1;
+    color: $verde;
+  }
+}
+
+// Telas de entrada, erro e página pública
+.entrada {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-block: clamp(3rem, 12vh, 7rem);
+
+  .logo {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &__titulo {
+    font-size: clamp(2.8rem, 10vw, 5.5rem);
+    font-weight: 800;
+
+    &--medio {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+    }
+
+    &--erro {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+  }
+
+  &__texto {
+    max-width: 34rem;
+    font-size: 1.15rem;
+  }
+
+  &__convite {
+    max-width: 34rem;
+    padding-left: 1rem;
+    border-left: 4px solid $verde;
+  }
+
+  &__nota {
+    max-width: 34rem;
+    font-size: 0.9rem;
+    color: $suave;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

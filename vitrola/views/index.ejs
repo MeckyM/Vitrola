@@ -1,0 +1,96 @@
+<%- include('partials/head', { titulo: 'Vitrine' }) %>
+<header class="topo container">
+  <%- include('partials/logo') %>
+  <div class="topo__direita">
+    <a class="marca" href="/">Vitrine</a>
+    <form method="post" action="/auth/logout"><button class="btn btn--contorno btn--mini" type="submit">Sair</button></form>
+  </div>
+</header>
+
+<main class="paineis container">
+
+  <!-- Painel 1: infos de quem está usando o app -->
+  <section class="painel painel--infos" id="perfil" aria-labelledby="perfil-nome">
+    <div class="infos__topo">
+      <% if (user.image_url) { %>
+        <img class="avatar avatar--grande" src="<%= user.image_url %>" alt="" width="88" height="88">
+      <% } else { %>
+        <span class="avatar avatar--grande avatar--vazio" aria-hidden="true"><%= (user.display_name || '?').charAt(0).toUpperCase() %></span>
+      <% } %>
+      <h1 class="infos__nome" id="perfil-nome"><%= user.display_name %></h1>
+    </div>
+
+    <div class="infos__resumo">
+      <div class="infos__tempo">
+        <span class="tempo tempo--grande" id="infos-total"><b>0</b><i>min</i></span>
+        <span class="infos__legenda" id="infos-desde">de música ouvida desde que você entrou</span>
+      </div>
+      <dl class="infos__dados">
+        <div><dt>Reproduções</dt><dd id="infos-plays">0</dd></div>
+        <div><dt>Mais tocada</dt><dd id="infos-top">Ainda sem dados</dd></div>
+      </dl>
+    </div>
+
+    <div class="periodos" role="group" aria-label="Período dos favoritos">
+      <button type="button" class="periodo" data-range="short_term" aria-pressed="false">Últimas 4 semanas</button>
+      <button type="button" class="periodo" data-range="medium_term" aria-pressed="true">Últimos 6 meses</button>
+      <button type="button" class="periodo" data-range="long_term" aria-pressed="false">Último ano</button>
+    </div>
+
+    <div class="tops">
+      <div>
+        <h2 class="subtitulo">Top 10 artistas</h2>
+        <ol class="top" id="fav-artistas"></ol>
+      </div>
+      <div>
+        <h2 class="subtitulo">Top 10 músicas</h2>
+        <ol class="top" id="fav-musicas"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Painel 2: o que a galera está ouvindo agora -->
+  <section class="painel painel--ouvindo" id="ouvindo" aria-labelledby="ouvindo-titulo">
+    <div class="painel__cabeca">
+      <h2 class="painel__titulo" id="ouvindo-titulo">Ouvindo agora</h2>
+      <p class="ouvindo__resumo" id="ouvindo-resumo"></p>
+    </div>
+    <ul class="ouvindo__grade" id="ouvindo-lista"></ul>
+  </section>
+
+  <!-- Painel 3: rank dos amigos -->
+  <section class="painel painel--rank" id="rank" aria-labelledby="rank-titulo">
+    <h2 class="painel__titulo" id="rank-titulo">Rank da galera</h2>
+    <p class="rank__aviso" id="rank-aviso" hidden></p>
+    <ol class="rank__lista" id="rank-lista"></ol>
+
+    <div class="acoes">
+      <div>
+        <h3 class="subtitulo">Convidar amigos</h3>
+        <p class="acoes__texto">Cada amigo entra pelo seu link e faz login com o Spotify. <span id="vagas"></span></p>
+        <div class="acoes__linha">
+          <input class="campo" id="convite-link" type="text" readonly aria-label="Link de convite">
+          <button class="btn btn--contorno" type="button" id="convite-copiar">Copiar convite</button>
+          <a class="btn btn--contorno" id="convite-whats" target="_blank" rel="noopener">Convidar no WhatsApp</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="subtitulo">Compartilhar o rank</h3>
+        <div class="acoes__linha">
+          <a class="btn" id="sh-whats" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--contorno" id="sh-x" target="_blank" rel="noopener">X</a>
+          <a class="btn btn--contorno" id="sh-face" target="_blank" rel="noopener">Facebook</a>
+          <a class="btn btn--contorno" id="sh-tele" target="_blank" rel="noopener">Telegram</a>
+          <button class="btn btn--contorno" type="button" id="sh-nativo" hidden>Outros apps</button>
+          <button class="btn btn--contorno" type="button" id="sh-copiar">Copiar link</button>
+          <a class="btn btn--contorno" id="sh-imagem" download="rank-vitrine.png">Baixar imagem</a>
+        </div>
+        <p class="acoes__texto">A imagem serve para postar no Instagram e em outros apps que não aceitam link direto.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/js/app.js" defer></script>
+</body>
+</html>

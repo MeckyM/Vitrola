@@ -1,0 +1,15 @@
+<%- include('partials/head', { titulo: 'Vitrine' }) %>
+<main class="entrada container">
+  <%- include('partials/logo') %>
+  <h1 class="entrada__titulo">Vitrine</h1>
+  <p class="entrada__texto">
+    Veja quem da sua galera mais ouviu música, quais artistas e faixas dominam o seu perfil e o que cada um está ouvindo agora.
+  </p>
+  <% if (convidado) { %>
+    <p class="entrada__convite">Você foi convidado para um grupo. Entre com o Spotify para participar.</p>
+  <% } %>
+  <a class="btn" href="/auth/login">Entrar com Spotify</a>
+  <p class="entrada__nota">A Vitrine só lê seu histórico, seus favoritos e o que está tocando. Ela não altera nada na sua conta.</p>
+</main>
+</body>
+</html>

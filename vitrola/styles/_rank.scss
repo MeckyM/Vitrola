@@ -1,0 +1,102 @@
+@use 'variables' as *;
+
+.rank {
+  &__aviso {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 4px solid $verde;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 3.2rem 3rem 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid $linha-fraca;
+
+    &--eu .rank__nome {
+      color: $verde-claro;
+    }
+  }
+
+  &__pos {
+    font-family: $fonte-titulo;
+    font-size: 2rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: $suave;
+
+    .rank__item--primeiro & {
+      color: $verde;
+      font-size: 2.6rem;
+    }
+  }
+
+  &__meio {
+    min-width: 0;
+  }
+
+  &__linha {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__nome {
+    overflow: hidden;
+    font-size: 1.1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__total {
+    flex: none;
+    font-size: 1.5rem;
+    color: $texto;
+
+    .rank__item--primeiro & {
+      color: $verde;
+    }
+  }
+
+  // Barra proporcional ao tempo do 1º colocado
+  &__barra {
+    height: 0.5rem;
+    margin-block: 0.5rem 0.4rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: $verde-fundo;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: $verde;
+      transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .rank__item--primeiro & span {
+      background: $verde-claro;
+    }
+  }
+
+  &__detalhe {
+    color: $suave;
+    font-size: 0.9rem;
+  }
+}
+
+// Página pública
+.rank__lista--publica {
+  width: 100%;
+  max-width: 44rem;
+
+  .rank__total {
+    font-size: 1.1rem;
+    font-family: $fonte-titulo;
+    font-weight: 800;
+  }
+}

@@ -1,0 +1,23 @@
+// Preto e verde, com um verde-fosforescente só para o que está "ao vivo".
+$preto: #070907;
+$painel: #0f130f;
+$painel-2: #161c16;
+$verde: #1ed760;
+$verde-claro: #7dffa8;
+$verde-fundo: #0c3b1d;
+$texto: #eefaf1;
+$suave: #8ea896;
+$linha: rgba($verde, 0.22);
+$linha-fraca: rgba($texto, 0.1);
+
+$fonte-titulo: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
+$fonte-texto: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+$largura: 56rem;
+$raio: 24px;
+
+@mixin ate($largura) {
+  @media (max-width: $largura) {
+    @content;
+  }
+}

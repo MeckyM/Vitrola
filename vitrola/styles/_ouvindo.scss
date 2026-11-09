@@ -1,0 +1,208 @@
+@use 'variables' as *;
+
+// O painel "ao vivo" é o único com brilho: é a parte que se move.
+.painel--ouvindo {
+  border-color: rgba($verde, 0.4);
+  box-shadow: 0 0 40px rgba($verde, 0.07);
+}
+
+.ouvindo {
+  &__resumo {
+    color: $suave;
+  }
+
+  &__grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 1rem;
+  }
+}
+
+.ao-vivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: $verde-claro;
+  font-weight: 600;
+
+  &__ponto {
+    position: relative;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: $verde;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid $verde;
+      animation: pulso 1.8s ease-out infinite;
+    }
+  }
+}
+
+.ouv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid $linha-fraca;
+  border-radius: 18px;
+  background: $painel-2;
+
+  &--tocando {
+    border-color: rgba($verde, 0.6);
+    animation: respirar 3.2s ease-in-out infinite;
+  }
+
+  &--off {
+    opacity: 0.6;
+  }
+
+  &__disco {
+    position: relative;
+    flex: none;
+    width: 4.5rem;
+    height: 4.5rem;
+
+    img,
+    .ouv__capa-vazia {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: $preto;
+    }
+
+    // furo central do disco
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 0.9rem;
+      height: 0.9rem;
+      margin: auto;
+      border-radius: 50%;
+      background: $painel-2;
+      box-shadow: 0 0 0 2px rgba($texto, 0.18);
+    }
+
+    .ouv--tocando & img {
+      animation: girar 6s linear infinite;
+    }
+  }
+
+  &__texto {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 0.1rem;
+  }
+
+  &__quem {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.2rem;
+    color: $suave;
+    font-size: 0.85rem;
+  }
+
+  &__avatar {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: $preto;
+  }
+
+  &__musica,
+  &__artista {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__artista {
+    color: $suave;
+    font-size: 0.9rem;
+  }
+
+  &__pausa {
+    color: $suave;
+    font-size: 0.8rem;
+  }
+}
+
+// Equalizador
+.barras {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 1rem;
+
+  i {
+    display: block;
+    width: 3px;
+    height: 100%;
+    background: $verde;
+    transform-origin: bottom;
+    animation: equalizar 0.9s ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.45s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.1s;
+    }
+  }
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes equalizar {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes respirar {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba($verde, 0);
+  }
+  50% {
+    box-shadow: 0 0 22px 0 rgba($verde, 0.22);
+  }
+}
+
+@keyframes pulso {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}

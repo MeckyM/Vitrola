@@ -1,0 +1,167 @@
+@use 'variables' as *;
+
+.infos {
+  &__topo {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  &__nome {
+    font-size: clamp(1.7rem, 5vw, 2.8rem);
+  }
+
+  &__resumo {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem 3.5rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $linha-fraca;
+
+    @include ate(46rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__tempo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__legenda {
+    max-width: 22rem;
+    color: $suave;
+  }
+
+  &__dados {
+    display: grid;
+    gap: 1rem;
+
+    dt {
+      color: $suave;
+      font-size: 0.9rem;
+    }
+
+    dd {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.periodos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.periodo {
+  min-height: 2.5rem;
+  padding: 0.4rem 1rem;
+  border: 2px solid $linha;
+  border-radius: 999px;
+  background: transparent;
+  color: $texto;
+  font: 600 0.9rem $fonte-texto;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    border-color: $verde;
+  }
+
+  &[aria-pressed='true'] {
+    background: $verde;
+    border-color: $verde;
+    color: #04130a;
+  }
+}
+
+.tops {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+
+  @include ate(46rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Top 10 numerado
+.top {
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid $linha-fraca;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba($verde, 0.06);
+    }
+  }
+
+  &__n {
+    flex: none;
+    width: 1.8rem;
+    font-family: $fonte-titulo;
+    font-size: 1.15rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: $suave;
+    text-align: right;
+
+    .top__item--destaque & {
+      color: $verde;
+    }
+  }
+
+  &__texto {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    strong,
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    span {
+      color: $suave;
+      font-size: 0.9rem;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__vazio {
+    color: $suave;
+  }
+}
+
+.foto {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 6px;
+  object-fit: cover;
+  background: $painel-2;
+
+  &--redonda {
+    border-radius: 50%;
+  }
+}

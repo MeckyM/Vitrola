@@ -1,0 +1,23 @@
+{
+  "name": "vitrola",
+  "version": "1.0.0",
+  "description": "Rank de amigos com dados do Spotify: tempo de escuta, música mais ouvida e o que está tocando agora.",
+  "private": true,
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build:css": "sass --no-source-map --style=compressed styles/main.scss public/css/main.css",
+    "watch:css": "sass --watch --no-source-map styles/main.scss public/css/main.css",
+    "start": "npm run build:css && node server.js",
+    "dev": "npm run build:css && node --watch server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "sass": "^1.77.0",
+    "sharp": "^0.33.5"
+  }
+}
